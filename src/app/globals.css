@@ -1,0 +1,109 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap');
+@import "slick-carousel/slick/slick.css";
+@import "slick-carousel/slick/slick-theme.css";
+
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+:root {
+  --foreground-rgb: 0, 0, 0;
+  --background-start-rgb: 214, 219, 220;
+  --background-end-rgb: 255, 255, 255;
+}
+html {
+  font-size: calc(100vw / 1512 * 10);
+}
+@media(max-width:768px){
+  html{
+    font-size: calc(100vw / 390 * 10);
+  }
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --foreground-rgb: 255, 255, 255;
+    --background-start-rgb: 0, 0, 0;
+    --background-end-rgb: 0, 0, 0;
+  }
+}
+*{
+  font-family: 'Poppins';
+}
+.nav ol li::after{
+    content: '';
+    width:0%;
+    height: 3px;
+    background: #518310;
+    display: block;
+    margin: auto;
+    transition: 0.5s;
+}
+.nav ol li:hover{
+  color: #518310;
+}
+.nav ol li:hover::after{
+    width: 100%;
+}
+.dropdown {
+  float: left;
+  overflow: hidden;
+}
+
+.dropdown .dropbtn {
+  font-size: 16px;  
+  border: none;
+  outline: none;
+  color: white;
+  padding: 14px 16px;
+  background-color: inherit;
+  font-family: inherit;
+  margin: 0;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f9f9f9;
+  /* min-width: 200px; */
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+}
+
+.dropdown-content li {
+  float: none;
+  color: #333333;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+  text-align: left;
+}
+.dropdown-content li:hover {
+  background-color: #ddd;
+}
+
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+.sidebar{
+  color: #A3A3A3;
+}
+.sidebar:hover{
+  color: #518310;
+  border-left: 2px solid #518310;
+  padding-left: 10px;
+}
+.sidebar:active{
+  color: #518310;
+  border-left: 2px solid #518310;
+  padding-left: 10px;
+}
+.icon:hover{
+  color: #518310;
+  filter: brightness(50%);
+}
+
+th,td,tr{
+  /* padding:px; */
+  border-left: blue;
+  border-style: dotted;
+}

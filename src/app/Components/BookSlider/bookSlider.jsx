@@ -5,7 +5,7 @@ import Slider from 'react-slick';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 
-const bookslider = ({ courses }) => {
+const BookSlider = ({ courses }) => {
   if (!courses) {
     return <div>No courses available</div>;
   }
@@ -75,4 +75,4 @@ const bookslider = ({ courses }) => {
   );
 };
 
-export default bookslider;
+export default BookSlider;

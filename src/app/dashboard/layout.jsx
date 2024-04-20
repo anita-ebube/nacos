@@ -1,22 +1,18 @@
-import React from 'react'
-import Navbar from './Components/Navbar/navbar'
-import Sidebar from './Components/Sidebar/sidebar'
-import Auth from "../../auth"
+import Navbar from "../Components/Navbar/navbar";
+import Sidebar from "../Components/Sidebar/Sidebar";
+import Auth from "../../auth";
 
-const layout = ({children}) => {
+const DashboardLayout = ({ children }) => {
   return (
     <>
-    <Auth>
-    <div>
-      <Navbar />
-      <Sidebar />
-      <main>
-        {children}
-      </main>
-    </div>
-    </Auth>
+      <>
+        <div>
+          <Navbar />
+          <Sidebar />
+          <main>{children}</main>
+        </div>
+      </>
     </>
-  )
-}
-
-export default layout
+  );
+};
+export default DashboardLayout;

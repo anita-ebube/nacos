@@ -1,8 +1,8 @@
 "use client";
 import { useState } from "react";
-import CoreCourses from "../Courses/coreCourses";
-import { departmentalFirstSemesternotes, departmentalSecondSemesternotes, generalFirstSemesternotes,  } from "../../../../../src/app/data";
-import GeneralCourses from "../Courses/generalCourses";
+import CoreCourses from "../Courses/CoreCourses";
+import { departmentalFirstSemesternotes, departmentalSecondSemesternotes, generalFirstSemesternotes,  } from "../../data";
+import GeneralCourses from "../Courses/GeneralCourses";
 
 const ToggleButton = ({ active, onToggle, children }) => {
   return (

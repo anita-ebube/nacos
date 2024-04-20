@@ -1,6 +1,6 @@
 "use client";
 import Header from "../Components/Header/header";
-import Footer from "../Components/Footer/footer";
+import Footer from "../Components/Footer/Footer";
 import React, {useState } from "react";
 import axios from "axios";
 import { BsEye, BsEyeSlash } from "react-icons/bs";

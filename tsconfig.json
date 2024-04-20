@@ -26,8 +26,15 @@
     "next-env.d.ts",
     ".next/types/**/*.ts",
     "**/*.ts",
-    "**/*.tsx"
-, "src/app/login/page.jsx", "src/app/registration/page.jsx", "src/app/dashboard/layout.jsx", "src/app/dashboard/page.jsx", "src/app/table/page.jsx", "src/app/dashboard/Components/Sidebar/sidebar.tsx"  ],
+    "**/*.tsx",
+    "src/app/login/page.jsx",
+    "src/app/registration/page.jsx",
+    "src/app/dashboard/layout.jsx",
+    "src/app/dashboard/page.jsx",
+    "src/app/table/page.jsx",
+    "src/app/Components/Sidebar/Sidebar.jsx",
+    "build/types/**/*.ts"
+  ],
   "exclude": [
     "node_modules"
   ]

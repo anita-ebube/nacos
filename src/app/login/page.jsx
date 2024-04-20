@@ -1,7 +1,7 @@
 "use client";
 import { useRouter } from "next/navigation";
 import Header from "../Components/Header/header";
-import Footer from "../Components/Footer/footer";
+import Footer from "../Components/Footer/Footer";
 import axios from "axios";
 import { useState } from "react";
 import { BsEye, BsEyeSlash } from "react-icons/bs";

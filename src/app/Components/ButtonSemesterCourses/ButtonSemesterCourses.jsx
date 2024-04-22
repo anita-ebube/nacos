@@ -59,7 +59,7 @@ const ButtonSemesterCourses = () => {
         onToggle={() => handleToggle("firstSemester")}
         active={firstSemester.active}
       >
-        First Semester
+        1st Semester
       </ToggleButton>
       <ToggleButton
         onToggle={() => handleToggle("secondSemester")}

@@ -1,7 +1,8 @@
 "use client";
 import Header from "../Components/Header/header";
 import Footer from "../Components/Footer/Footer";
-import React, {useState } from "react";
+import SelectDepartment from "../Components/SelectDepartment/SelectDepartment";
+import React, { useState } from "react";
 import axios from "axios";
 import { BsEye, BsEyeSlash } from "react-icons/bs";
 
@@ -18,9 +19,11 @@ const Registration = () => {
   const [error, setError] = useState("");
   const [passwordValidationError, setPasswordValidationError] = useState("");
   const [emailValidationError, setEmailValidationError] = useState("");
+  const [regNumberValidationError, setRegNumberValidationError] = useState("");
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
   const [registrationSuccess, setRegistrationSuccess] = useState(false);
+  const [departmentStates, SelectDepartmentStates] = useState('')
 
   const togglePasswordVisibility = () => {
     setShowPassword((prevShowPassword) => !prevShowPassword);
@@ -41,6 +44,10 @@ const Registration = () => {
     return password.length >= 8;
   };
 
+  const validateRegNumber = (regno) => {
+    const regnoRegx = /^\d+\/\d+$/;
+    return regnoRegx.test(regno);
+  };
   const submitForm = async (e) => {
     e.preventDefault();
 
@@ -52,6 +59,12 @@ const Registration = () => {
     if (!validatePassword(postUsers.password)) {
       setPasswordValidationError("Password must be at least 8 characters long");
       return;
+    }
+
+    if (!validateRegNumber(postUsers.reg_no)) {
+      setRegNumberValidationError(
+        "Only numbers are accepted and it must contain a /"
+      );
     }
 
     const formData = new FormData();
@@ -80,7 +93,7 @@ const Registration = () => {
       const data = res.data;
       console.log(data);
       setRegistrationSuccess(true);
-      window.location.href = "/login";
+      // window.location.href = "/login";
       setPostUsers({
         full_name: "",
         reg_no: "",
@@ -93,6 +106,15 @@ const Registration = () => {
     } catch (error) {
       console.error("NOTICE!!", error);
       setError("The username is already taken");
+      if (
+        error.response &&
+        error.response.data &&
+        error.response.data.message === "Email already taken"
+      ) {
+        setError("Email is already taken");
+      } else {
+        setError("An error occurred. Please try again later.");
+      }
     }
   };
 
@@ -100,13 +122,11 @@ const Registration = () => {
     const { id, value, type } = e.target;
 
     if (type === "file") {
-      // For file input, handle it differently
       setPostUsers((prevState) => ({
         ...prevState,
-        [id]: e.target.files[0], // Update with file object
+        [id]: e.target.files[0], 
       }));
     } else {
-      // For other inputs, update normally
       setPostUsers((prevState) => ({
         ...prevState,
         [id]: value,
@@ -114,6 +134,10 @@ const Registration = () => {
     }
   };
 
+  const departmentOptions = ["Computer Science", "Mathematics","Pure and Industrial Chemistry", "Statistics"]
+  const handleStateChange = (event) => {
+    SelectDepartmentStates(event.target.value)
+  }
   return (
     <>
       <div>
@@ -126,12 +150,16 @@ const Registration = () => {
             <p className="text-center py-1 text-[1.5rem]">
               Create your account
             </p>
-            {registrationSuccess ? ( // Render success message if registration is successful
-              <p className="text-green-500 text-center">Registration completed</p>
-            ) : (<p className="text-green-500 text-center">Error Occured</p>)}
+            {registrationSuccess ? (
+              <p className="text-green-500 text-center">
+                Registration completed
+              </p>
+            ) : (
+              <p className="text-green-500 text-center">Error Occured</p>
+            )}
             <form action="" onSubmit={submitForm} className="relative">
               <label htmlFor="" className="block text-[1.5rem] mt-10">
-                UserName
+                FullName
               </label>
               <input
                 type="text"
@@ -140,7 +168,6 @@ const Registration = () => {
                 onChange={(e) => handleData(e)}
                 className="border border-[#737373] w-full px-4 py-4 rounded-lg my-2 text-[13px] "
               />
-
               <label htmlFor="" className="block text-[1.5rem] mt-10">
                 Registration Number
               </label>
@@ -151,19 +178,19 @@ const Registration = () => {
                 onChange={(e) => handleData(e)}
                 className="border border-[#737373] w-full px-4 py-4 rounded-lg my-2 text-[13px] "
               />
-
+              {regNumberValidationError && (
+                <p className="text-red-500">{regNumberValidationError}</p>
+              )}
               <label htmlFor="" className="block text-[1.5rem] mt-10">
                 Department
               </label>
-
-              <input
-                type="text"
-                id="department"
+              <SelectDepartment 
+                placeholder={"Select Department"}
+                options={departmentOptions}
+                selectedOption={departmentStates}
+                onChange={handleStateChange}
                 value={postUsers.department}
-                onChange={(e) => handleData(e)}
-                className="border border-[#737373] w-full px-4 py-4 rounded-lg my-2 text-[13px] "
               />
-
               <label htmlFor="" className="block text-[1.5rem] mt-10">
                 Email
               </label>
@@ -181,7 +208,7 @@ const Registration = () => {
                 htmlFor="upload-file"
                 className="block text-[1.5rem] mt-10"
               >
-                Select Image File:
+                Select Profile Image:
               </label>
               <input
                 type="file"
@@ -214,7 +241,6 @@ const Registration = () => {
                   )}
                 </div>
               </div>
-
               <div className="relative">
                 <label htmlFor="" className="block text-[1.5rem] mt-10">
                   Confirm Password
@@ -240,7 +266,6 @@ const Registration = () => {
                   )}
                 </div>
               </div>
-
               <button
                 type="submit"
                 className="bg-[#518310] lg:px-[10rem] w-full py-4 text-white my-4 text-[1.5rem] rounded-lg mt-10"

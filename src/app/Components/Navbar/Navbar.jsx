@@ -52,9 +52,9 @@ const Navbar = () => {
             <div key={user.id} className="lg:ml-[24rem] ml-[10rem]">
               <p className="lg:text-2xl text-[10px] ">
                 <span className="lg:text-2xl text-[10px] font-medium">
-                  Courses
+                  {user.department}
                 </span>{" "}
-                / {user.department}-100 Level
+                / Courses-100Level
               </p>
             </div>
           ))
@@ -76,7 +76,6 @@ const Navbar = () => {
                 />
               </div>
             ))}
-
         </div>
       </nav>
     </>

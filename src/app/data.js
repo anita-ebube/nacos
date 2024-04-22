@@ -1,12 +1,12 @@
 export const departmentalFirstSemesternotes = [
     {
-      href: "/dashboard",
+      href: "/modal",
       image: "/images/notes/5.png",
       title: "Cos 101: Artificail Intelligence",
       hint: "Explore the world of database",
       author: "/images/notes/author.png",
       name: "Dr M.C Okoronkwo ",
-      COS232:
+      fileURL:
         "https://drive.google.com/uc?export=download&id=1qMZ1kYYW-qQv20JsMdm7LReQ83HPjQVh",
       download: "/images/sidebar/icons/download.svg",
     },
@@ -17,7 +17,7 @@ export const departmentalFirstSemesternotes = [
       hint: "Explore the world of database",
       author: "/images/notes/author.png",
       name: "Dr M.C Okoronkwo ",
-      COS232:
+      fileURL:
         "https://drive.google.com/uc?export=download&id=1qMZ1kYYW-qQv20JsMdm7LReQ83HPjQVh",
       download: "/images/sidebar/icons/download.svg",
     },
@@ -28,7 +28,7 @@ export const departmentalFirstSemesternotes = [
       hint: "Explore the world of database",
       author: "/images/notes/author.png",
       name: "Dr M.C Okoronkwo ",
-      COS232:
+      fileURL:
         "https://drive.google.com/uc?export=download&id=1qMZ1kYYW-qQv20JsMdm7LReQ83HPjQVh",
       download: "/images/sidebar/icons/download.svg",
     },
@@ -39,7 +39,7 @@ export const departmentalFirstSemesternotes = [
       hint: "Explore the world of database",
       author: "/images/notes/author.png",
       name: "Dr M.C Okoronkwo ",
-      COS232:
+      fileURL:
         "https://drive.google.com/uc?export=download&id=1qMZ1kYYW-qQv20JsMdm7LReQ83HPjQVh",
       download: "/images/sidebar/icons/download.svg",
     },
@@ -50,7 +50,7 @@ export const departmentalFirstSemesternotes = [
       hint: "Explore the world of database",
       author: "/images/notes/author.png",
       name: "Dr M.C Okoronkwo ",
-      COS232:
+      fileURL:
         "https://drive.google.com/uc?export=download&id=1qMZ1kYYW-qQv20JsMdm7LReQ83HPjQVh",
       download: "/images/sidebar/icons/download.svg",
     },
@@ -58,13 +58,13 @@ export const departmentalFirstSemesternotes = [
 
   export const departmentalSecondSemesternotes = [
     {
-      href: "/dashboard",
+      href: "/",
       image: "/images/notes/2.png",
       title: "Cos 101: Artificail Intelligence wazalicious",
       hint: "Explore the world of database",
       author: "/images/notes/author.png",
       name: "Dr M.C Okoronkwo ",
-      COS232:
+      fileURL:
       "https://drive.google.com/uc?export=download&id=1qMZ1kYYW-qQv20JsMdm7LReQ83HPjQVh",
       download: "/images/sidebar/icons/download.svg",
     },
@@ -75,7 +75,7 @@ export const departmentalFirstSemesternotes = [
       hint: "Explore the world of database",
       author: "/images/notes/author.png",
       name: "Dr M.C Okoronkwo ",
-      COS232:
+      fileURL:
         "https://drive.google.com/uc?export=download&id=1qMZ1kYYW-qQv20JsMdm7LReQ83HPjQVh",
       download: "/images/sidebar/icons/download.svg",
     },
@@ -86,7 +86,7 @@ export const departmentalFirstSemesternotes = [
       hint: "Explore the world of database",
       author: "/images/notes/author.png",
       name: "Dr M.C Okoronkwo ",
-      COS232:
+      fileURL:
         "https://drive.google.com/uc?export=download&id=1qMZ1kYYW-qQv20JsMdm7LReQ83HPjQVh",
       download: "/images/sidebar/icons/download.svg",
     },
@@ -97,7 +97,7 @@ export const departmentalFirstSemesternotes = [
       hint: "Explore the world of database",
       author: "/images/notes/author.png",
       name: "Dr M.C Okoronkwo ",
-      COS232:
+      fileURL:
         "https://drive.google.com/uc?export=download&id=1qMZ1kYYW-qQv20JsMdm7LReQ83HPjQVh",
       download: "/images/sidebar/icons/download.svg",
     },
@@ -108,7 +108,7 @@ export const departmentalFirstSemesternotes = [
       hint: "Explore the world of database",
       author: "/images/notes/author.png",
       name: "Dr M.C Okoronkwo ",
-      COS232:
+      fileURL:
         "https://drive.google.com/uc?export=download&id=1qMZ1kYYW-qQv20JsMdm7LReQ83HPjQVh",
       download: "/images/sidebar/icons/download.svg",
     },
@@ -121,7 +121,7 @@ export const departmentalFirstSemesternotes = [
       hint: "Explore the world of database",
       author: "/images/notes/author.png",
       name: "Dr M.C Okoronkwo ",
-      COS232:
+      fileURL:
         "https://drive.google.com/uc?export=download&id=1qMZ1kYYW-qQv20JsMdm7LReQ83HPjQVh",
       download: "/images/sidebar/icons/download.svg",
     },
@@ -132,7 +132,7 @@ export const departmentalFirstSemesternotes = [
       hint: "Explore the world of database",
       author: "/images/notes/author.png",
       name: "Dr M.C Okoronkwo ",
-      COS232:
+      fileURL:
         "https://drive.google.com/uc?export=download&id=1qMZ1kYYW-qQv20JsMdm7LReQ83HPjQVh",
       download: "/images/sidebar/icons/download.svg",
     },
@@ -143,7 +143,7 @@ export const departmentalFirstSemesternotes = [
       hint: "Explore the world of database",
       author: "/images/notes/author.png",
       name: "Dr M.C Okoronkwo ",
-      COS232:
+      fileURL:
         "https://drive.google.com/uc?export=download&id=1qMZ1kYYW-qQv20JsMdm7LReQ83HPjQVh",
       download: "/images/sidebar/icons/download.svg",
     },
@@ -154,7 +154,7 @@ export const departmentalFirstSemesternotes = [
       hint: "Explore the world of database",
       author: "/images/notes/author.png",
       name: "Dr M.C Okoronkwo ",
-      COS232:
+      fileURL:
         "https://drive.google.com/uc?export=download&id=1qMZ1kYYW-qQv20JsMdm7LReQ83HPjQVh",
       download: "/images/sidebar/icons/download.svg",
     },
@@ -165,7 +165,7 @@ export const departmentalFirstSemesternotes = [
       hint: "Explore the world of database",
       author: "/images/notes/author.png",
       name: "Dr M.C Okoronkwo ",
-      COS232:
+      fileURL:
         "https://drive.google.com/uc?export=download&id=1qMZ1kYYW-qQv20JsMdm7LReQ83HPjQVh",
       download: "/images/sidebar/icons/download.svg",
     },
@@ -179,7 +179,7 @@ export const departmentalFirstSemesternotes = [
       hint: "Explore the world of database",
       author: "/images/notes/author.png",
       name: "Dr M.C Okoronkwo ",
-      COS232:
+      fileURL:
       "https://drive.google.com/uc?export=download&id=1qMZ1kYYW-qQv20JsMdm7LReQ83HPjQVh",
       download: "/images/sidebar/icons/download.svg",
     },
@@ -190,7 +190,7 @@ export const departmentalFirstSemesternotes = [
       hint: "Explore the world of database",
       author: "/images/notes/author.png",
       name: "Dr M.C Okoronkwo ",
-      COS232:
+      fileURL:
         "https://drive.google.com/uc?export=download&id=1qMZ1kYYW-qQv20JsMdm7LReQ83HPjQVh",
       download: "/images/sidebar/icons/download.svg",
     },
@@ -201,7 +201,7 @@ export const departmentalFirstSemesternotes = [
       hint: "Explore the world of database",
       author: "/images/notes/author.png",
       name: "Dr M.C Okoronkwo ",
-      COS232:
+      fileURL:
         "https://drive.google.com/uc?export=download&id=1qMZ1kYYW-qQv20JsMdm7LReQ83HPjQVh",
       download: "/images/sidebar/icons/download.svg",
     },
@@ -212,7 +212,7 @@ export const departmentalFirstSemesternotes = [
       hint: "Explore the world of database",
       author: "/images/notes/author.png",
       name: "Dr M.C Okoronkwo ",
-      COS232:
+      fileURL:
         "https://drive.google.com/uc?export=download&id=1qMZ1kYYW-qQv20JsMdm7LReQ83HPjQVh",
       download: "/images/sidebar/icons/download.svg",
     },
@@ -223,7 +223,7 @@ export const departmentalFirstSemesternotes = [
       hint: "Explore the world of database",
       author: "/images/notes/author.png",
       name: "Dr M.C Okoronkwo ",
-      COS232:
+      fileURL:
         "https://drive.google.com/uc?export=download&id=1qMZ1kYYW-qQv20JsMdm7LReQ83HPjQVh",
       download: "/images/sidebar/icons/download.svg",
     },

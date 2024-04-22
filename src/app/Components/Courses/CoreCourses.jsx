@@ -1,17 +1,18 @@
 "use client";
 import Link from "next/link";
+
 const CoreCourses = (props) => {
-  const downloadFileAtURL = (url, event) => {
-    event.preventDefault();
-    const fileName = url.split("/").pop();
-    const aTag = document.createElement("a");
-    aTag.href = url;
-    aTag.setAttribute("download", fileName);
-    document.body.appendChild(aTag);
-    aTag.click();
-    aTag.remove();
+  const fileUrl = "https://drive.google.com/uc?export=download&id=1qMZ1kYYW-qQv20JsMdm7LReQ83HPjQVh"
+  const downloadFile = (fileUrl) => {
+    const anchor = document.createElement('a');
+    anchor.href = fileUrl;
+    const fileName = fileUrl.split('/').pop();
+    anchor.setAttribute('download', fileName);
+    document.body.appendChild(anchor);
+    anchor.click();
+    document.body.removeChild(anchor);
   };
- 
+  
   return (
     <div>
       <div className="block  gap-10">
@@ -28,15 +29,12 @@ const CoreCourses = (props) => {
                   <img src={props.author} alt="" />
                   {props.name}
                 </div>
-                <div></div>
-                <button
-                  onClick={(event) => {
-                    downloadFileAtURL(COS232, event);
-                  }}
+                <button onClick={() =>{downloadFile(fileUrl)}}
                 >
                   {" "}
                   <img src={props.download} alt="download" className="w-8/12" />
                 </button>
+                
               </div>
             </div>
           </Link>

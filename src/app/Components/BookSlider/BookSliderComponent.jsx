@@ -1,4 +1,4 @@
-import CoreCourses from "../BookSlider/BookSlider";
+import CoreCourses from "./BookSlider";
 import { coursesData } from "../../data";
 
 const BookSliderComponent = () => {

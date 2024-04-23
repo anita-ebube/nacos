@@ -2,7 +2,7 @@ import Header from "./Components/Header/header";
 import Hero from "./Components/Hero/hero";
 import Carousel from "./Components/Carousel/carousel";
 import Footer from "./Components/Footer/footer";
-import BookSliderComponent from "./Components/BookSlider/BookSliderData";
+import BookSliderComponent from "./Components/BookSlider/BookSliderComponent";
 
 export default function Home() {
   return (

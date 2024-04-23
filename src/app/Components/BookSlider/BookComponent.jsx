@@ -4,7 +4,7 @@ import Slider from 'react-slick';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 
-const BookSlider = ({ courses }) => {
+const BookComponent = ({ courses }) => {
   
   // Settings for react-slick carousel
   const settings = {
@@ -60,4 +60,4 @@ const BookSlider = ({ courses }) => {
   );
 };
 
-export default BookSlider;
+export default BookComponent;

@@ -1,4 +1,4 @@
-import CoreCourses from "./BookSlider";
+import BookComponent from './BookComponent'
 import { coursesData } from "../../data";
 
 const BookSliderComponent = () => {
@@ -6,7 +6,7 @@ const BookSliderComponent = () => {
     <>
       <div>
         {coursesData && coursesData.length > 0 && (
-          <CoreCourses courses={coursesData} />
+          <BookComponent courses={coursesData} />
         )}
       </div>
     </>

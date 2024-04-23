@@ -1,6 +1,6 @@
 import Header from "./Components/Header/header";
 import Hero from "./Components/Hero/hero";
-import {BookSliderData} from "./Components/BookSlider/BookSliderData";
+import BookSliderData from "./Components/BookSlider/BookSliderData";
 // import Book
 import Carousel from "./Components/Carousel/carousel";
 import Footer from "./Components/Footer/footer";

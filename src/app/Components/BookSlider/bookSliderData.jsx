@@ -1,6 +1,6 @@
 import CoreCourses from "./BookSlider"
 
-const bookSliderData = () =>{
+const BookSliderData = () =>{
     const coursesData = [
         {
           href: "/",
@@ -59,4 +59,4 @@ const bookSliderData = () =>{
         </div>
       )
 }
-export default bookSliderData;
+export default BookSliderData;

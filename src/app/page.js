@@ -1,9 +1,8 @@
 import Header from "./Components/Header/header";
 import Hero from "./Components/Hero/hero";
-import BookSliderData from "./Components/BookSlider/BookSliderData";
-// import Book
 import Carousel from "./Components/Carousel/carousel";
 import Footer from "./Components/Footer/footer";
+import BookSliderComponent from "./Components/BookSlider/BookSliderData";
 
 export default function Home() {
   return (
@@ -12,7 +11,7 @@ export default function Home() {
         <Header />
         <Hero />
         <div className="mt-[10rem]">
-          <BookSliderData />
+          <BookSliderComponent />
         </div>
       </div>
       <div className="p-[14rem]">

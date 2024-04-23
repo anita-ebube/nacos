@@ -1,4 +1,4 @@
-import Navbar from "../Components/Navbar/navbar";
+import Navbar from "../Components/Navbar/Navbar";
 import Sidebar from "../Components/Sidebar/Sidebar";
 import Auth from "../../auth";
 

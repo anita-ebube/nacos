@@ -212,7 +212,7 @@ const Registration = () => {
               </label>
               <input
                 type="file"
-                // accept="image/png"
+                accept="image/png"
                 name="image"
                 id="profile"
                 capture="camera"

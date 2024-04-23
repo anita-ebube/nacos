@@ -1,6 +1,6 @@
 "use client";
 import Header from "../Components/Header/header";
-import Footer from "../Components/Footer/Footer";
+import Footer from "../Components/Footer/footer";
 import SelectDepartment from "../Components/SelectDepartment/SelectDepartment";
 import React, { useState } from "react";
 import axios from "axios";

@@ -1,5 +1,5 @@
 import ButtonSemesters from "../Components/ButtonSemesterCourses/ButtonSemesterCourses";
-import Footer from "../Components/Footer/Footer";
+import Footer from "../Components/Footer/footer";
 
 const DashboardPage = () => {
   return (

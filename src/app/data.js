@@ -1,6 +1,6 @@
 export const departmentalFirstSemesternotes = [
     {
-      href: "/modal",
+      href: "/dashboard",
       image: "/images/notes/5.png",
       title: "Cos 101: Artificail Intelligence",
       hint: "Explore the world of database",
@@ -35,7 +35,7 @@ export const departmentalFirstSemesternotes = [
     {
       href: "/dashboard",
       image: "/images/notes/6.png",
-      title: "Cos 101: Artificail Intelligence",
+      title: "COS 101: Numerical Mathematics",
       hint: "Explore the world of database",
       author: "/images/notes/author.png",
       name: "Dr M.C Okoronkwo ",

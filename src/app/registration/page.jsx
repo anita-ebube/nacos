@@ -145,7 +145,7 @@ const Registration = () => {
           <Header />
         </div>
         <div className="flex lg:justify-between justify-center align-center lg:p-10">
-          <div className="lg:px-[10rem] w-[50%]">
+          <div className="lg:px-[10rem] lg:w-[50%]">
             <h1 className="text-center text-[3rem] ">Hello</h1>
             <p className="text-center py-1 text-[1.5rem]">
               Create your account
@@ -166,7 +166,7 @@ const Registration = () => {
                 id="full_name"
                 value={postUsers.full_name}
                 onChange={(e) => handleData(e)}
-                className="border border-[#737373] w-full px-4 py-4 rounded-lg my-2 text-[13px] "
+                className="border border-[#737373] w-full px-4 py-3 rounded-lg my-2 text-[13px] "
               />
               <label htmlFor="" className="block text-[1.5rem] mt-10">
                 Registration Number
@@ -176,7 +176,7 @@ const Registration = () => {
                 id="reg_no"
                 value={postUsers.reg_no}
                 onChange={(e) => handleData(e)}
-                className="border border-[#737373] w-full px-4 py-4 rounded-lg my-2 text-[13px] "
+                className="border border-[#737373] w-full px-4 py-3 rounded-lg my-2 text-[13px] "
               />
               {regNumberValidationError && (
                 <p className="text-red-500">{regNumberValidationError}</p>
@@ -199,7 +199,7 @@ const Registration = () => {
                 id="email"
                 value={postUsers.email}
                 onChange={(e) => handleData(e)}
-                className="border border-[#737373] w-full px-4 py-4 rounded-lg my-2 text-[13px] "
+                className="border border-[#737373] w-full px-4 py-3 rounded-lg my-2 text-[13px] "
               />
               {emailValidationError && (
                 <p className="text-red-500">{emailValidationError}</p>
@@ -217,7 +217,7 @@ const Registration = () => {
                 id="profile"
                 capture="camera"
                 onChange={(e) => handleData(e)}
-                className=" border border-[#737373] w-full px-4 py-4 rounded-lg my-2 file:mr-10"
+                className=" border border-[#737373] w-full px-4 py-3 rounded-lg my-2 file:mr-10"
               />
               <div className="relative">
                 <label htmlFor="" className="block text-[1.5rem] mt-10">
@@ -228,7 +228,7 @@ const Registration = () => {
                   id="password"
                   onChange={(e) => handleData(e)}
                   value={postUsers.password}
-                  className="border border-[#737373] w-full px-4 py-4 rounded-lg my-2 text-[13px] "
+                  className="border border-[#737373] w-full px-4 py-3 rounded-lg my-2 text-[13px] "
                 />
                 {passwordValidationError && (
                   <p className="text-red-500">{passwordValidationError}</p>
@@ -250,7 +250,7 @@ const Registration = () => {
                   id="confirm_password"
                   onChange={(e) => handleData(e)}
                   value={postUsers.confirm_password}
-                  className="border border-[#737373] w-full px-4 py-4 rounded-lg my-2 text-[13px] "
+                  className="border border-[#737373] w-full px-4 py-3 rounded-lg my-2 text-[13px] "
                 />
                 <div className="absolute top-[38px] right-5">
                   {showConfirmPassword ? (
@@ -268,7 +268,7 @@ const Registration = () => {
               </div>
               <button
                 type="submit"
-                className="bg-[#518310] lg:px-[10rem] w-full py-4 text-white my-4 text-[1.5rem] rounded-lg mt-10"
+                className="bg-[#518310] lg:px-[10rem] w-full py-4 text-white text-[1.5rem] rounded-lg mb-[10rem] mt-10"
               >
                 Register
               </button>

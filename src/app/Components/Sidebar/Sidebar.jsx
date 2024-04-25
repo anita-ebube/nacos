@@ -61,7 +61,7 @@ const Sidebar = () => {
       {sidebarLinks.map((item, index) => (
         <div className="mt-10" key={index}>
           <Link href={item.href}  className="sidebar flex gap-5 items-center text-xl font-medium" onClick={() => toggleParent(index)}>
-            {item.image}
+            <span>{item.image}</span>
             <h2 className={`whitespace-pre duration-500 ${!isOpen && 'opacity-0 translate-x-28 overflow-hidden'}`}>{item.link}</h2>
           </Link>
           {openParent === index && (

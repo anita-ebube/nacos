@@ -68,12 +68,12 @@ const Login = () => {
           <Header />
         </div>
         <div className="flex lg:justify-between justify-center align-center lg:p-10">
-          <div className="lg:px-[14rem] lg:py-[13rem] w-[50%]">
+          <div className="lg:px-[10rem] lg:py-[13rem]">
             <h1 className="text-center text-[2.5rem] lg:text-[3rem] ">Welcome Back!</h1>
             <p className="text-center py-1 text-[1.5rem]">
               Log in to your account
             </p>
-            <form onSubmit={handleFormSubmit} className="relative">
+            <form onSubmit={handleFormSubmit} className="relative ">
               <label htmlFor="username" className="block text-[1.5rem] mt-10">
                 Full Name
               </label>
@@ -82,7 +82,7 @@ const Login = () => {
                 id="username"
                 value={credentials.username}
                 onChange={handleInputChange}
-                className="border border-[#737373] w-full px-4 py-4 rounded-lg my-2"
+                className="border border-[#737373] w-full px-4 py-4 rounded-lg "
               />
               <label htmlFor="password" className="block text-[1.5rem] mt-10">
                 Password

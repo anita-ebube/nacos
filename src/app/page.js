@@ -14,7 +14,7 @@ export default function Home() {
           <BookSliderComponent />
         </div>
       </div>
-      <div className="p-[14rem]">
+      <div className="p-[1rem] lg:p-[14rem] ">
         <Carousel />
       </div>
       <Footer />

@@ -11,7 +11,7 @@ const ToggleButton = ({ active, onToggle, children }) => {
         active
           ? "bg-[#518310] text-white"
           : "bg-transparent border border-[#518310]"
-      } px-8 py-4 m-5 text-[1.5rem] rounded font-medium`}
+      } px-3 lg:px-8 py-4 m-3 lg:m-5 text-[14px] lg:text-3xl rounded font-medium`}
       onClick={onToggle}
     >
       {children}

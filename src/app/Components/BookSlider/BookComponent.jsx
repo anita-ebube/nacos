@@ -33,7 +33,7 @@ const BookComponent = ({ courses }) => {
   return (
     <div>
       <Slider {...settings}>
-        {courses.map(({ href, image, title, hint, author, name, download, COS232 }) => (
+        {courses.map(({ href, image, title, hint, author, name }) => (
           <div key={title}>
             <Link href={href} className=" items-center">
               <div className="p-[3rem] bg-white w-full shadow-xl hover:shadow-none">

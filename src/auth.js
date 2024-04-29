@@ -8,15 +8,16 @@ const Auth = ({ children }) => {
   const authorization = sessionStorage.getItem("auth");
 
   console.log("ree", authorization);
-
-  if (!authorization) {
-    router.push("/login");
-  } else {
-    return (
-      <>
-        <div>{children}</div>
-      </>
-    );
-  }
+  useEffect(() => {
+    if (!authorization) {
+      router.push("/login");
+    } else {
+      return (
+        <>
+          <div>{children}</div>
+        </>
+      );
+    }
+  });
 };
 export default Auth;

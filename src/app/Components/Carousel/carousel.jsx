@@ -11,7 +11,7 @@ import { Keyboard, Scrollbar, Navigation, Pagination } from "swiper/modules";
 export default function App() {
   return (
     <>
-      <h1 className="text-[#518310] text-center lg:text-5xl font-semibold ">How it Works</h1>
+      <h1 className="text-[#518310] text-center text-4xl lg:text-5xl font-semibold pt-[8rem] pb-[3rem]">How it Works</h1>
       <Swiper
       style={{
         "--swiper-navigation-color": "#518310",

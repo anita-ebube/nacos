@@ -6,11 +6,9 @@ import axios from "axios";
 import { useState } from "react";
 import { BsEye, BsEyeSlash } from "react-icons/bs";
 
-
 const Login = () => {
   const router = useRouter();
-  const url =
-    "https://anita.metrochem.com.ng/api/auth/login";
+  const url = "https://anita.metrochem.com.ng/api/auth/login";
   const [credentials, setCredentials] = useState({
     username: "",
     password: "",
@@ -30,12 +28,12 @@ const Login = () => {
 
   function handleFormSubmit(e) {
     e.preventDefault();
-  
+
     if (!credentials.username || !credentials.password) {
       setError("Please enter both username and password.");
       return;
     }
-  
+
     axios
       .post(url, credentials, {
         method: "POST",
@@ -60,14 +58,13 @@ const Login = () => {
       });
   }
 
-
   return (
     <>
       <div>
         <div className="p-10">
           <Header />
         </div>
-        <div className="flex lg:justify-between justify-center align-center lg:p-10">
+        {/* <div className="flex lg:justify-between justify-center align-center lg:p-10">
           <div className="lg:px-[10rem] lg:py-[13rem]">
             <h1 className="text-center text-[2.5rem] lg:text-[3rem] ">Welcome Back!</h1>
             <p className="text-center py-1 text-[1.5rem]">
@@ -120,9 +117,72 @@ const Login = () => {
               className="hidden lg:flex object-scale-down pr-[6rem]"
             />
           </div>
+        </div> */}
+        <div className="flex lg:justify-between justify-center align-center lg:p-10">
+          <div className="lg:px-[10rem] lg:py-[13rem] lg:w-[50%]">
+            <h1 className="text-center text-[3rem] ">Welcome Back!</h1>
+            <p className="text-center py-1 text-[1.5rem]">
+              Log in to your account
+            </p>
+            <form onSubmit={handleFormSubmit} className="relative ">
+              <label htmlFor="username" className="block text-[1.5rem] mt-10">
+                FullName
+              </label>
+              <input
+                type="text"
+                id="username"
+                value={credentials.username}
+                onChange={handleInputChange}
+                className="border border-[#737373] w-full px-4 py-3 rounded-lg my-2 text-[13px] "
+              />
+              <div className="relative">
+                <label
+                  label
+                  htmlFor="password"
+                  className="block text-[1.5rem] mt-10"
+                >
+                  Password
+                </label>
+                <input
+                  type={showPassword ? "text" : "password"}
+                  id="password"
+                  value={credentials.password}
+                  onChange={handleInputChange}
+                  className="border border-[#737373] w-full px-4 py-3 rounded-lg my-2 text-[13px] "
+                />
+                <div className="absolute top-[35px] lg:top-[31px] right-5">
+                  {showPassword ? (
+                    <BsEye onClick={togglePasswordVisibility} size={15} />
+                  ) : (
+                    <BsEyeSlash onClick={togglePasswordVisibility} size={15} />
+                  )}
+                </div>
+              </div>
+
+              <button
+                type="submit"
+                className="bg-[#518310] lg:px-[10rem] w-full py-4 text-white my-4 text-[1.5rem] rounded-lg mt-10"
+              >
+                Log In
+              </button>
+              {error && <p className="text-red-500">{error}</p>}
+            </form>
+          </div>
+          <div>
+            <img
+              src="./images/register.png"
+              alt=""
+              className="hidden lg:flex object-scale-down pr-[6rem]"
+            />
+          </div>
         </div>
       </div>
+      
+      
+      <div className="fixed w-full bottom-0 ">
       <Footer />
+      </div>
+     
     </>
   );
 };

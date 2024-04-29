@@ -1,6 +1,7 @@
 "use client";
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import Image from "next/image";
 
 const Navbar = () => {
   const [username, setUsername] = useState("");
@@ -63,7 +64,7 @@ const Navbar = () => {
         )}
 
         <div className="lg:flex justify-between items-center gap-10 hidden">
-          <img src="/icons/notification.svg" alt="" />
+          <Image src="/images/sidebar/notification.png" alt="" width={20} height={20}/>
           <h1 className="lg:text-2xl text-[10px]">Welcome, {username}</h1>
 
           {userProfile &&

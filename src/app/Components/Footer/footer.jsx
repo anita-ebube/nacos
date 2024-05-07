@@ -17,7 +17,7 @@ const Footer = () => {
             2024 @ Noteplug | All rights resevered
           </p>
         </div>
-        <div className="flex justify-between align-center gap-3 lg:gap-5">
+        <div className="flex justify-between align-center gap-3 lg:gap-7">
           < Image src="/images/footer/facebook.png" alt="facebook" width={20} height={20}/>
           < Image src="/images/footer/twitter.png" alt="twitter" width={20} height={20}/>
           < Image src="/images/footer/instagram.png" alt="instagram" width={20} height={20}/>

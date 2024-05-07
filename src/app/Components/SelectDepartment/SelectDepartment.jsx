@@ -1,8 +1,4 @@
-const SelectDepartment = ({
-  options,
-  departmentOptions,
-  onChange,
-}) => {
+const SelectDepartment = ({ options, departmentOptions, onChange }) => {
   return (
     <select
       value={departmentOptions}

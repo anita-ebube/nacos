@@ -2,17 +2,20 @@
 import Header from "../Components/Header/header";
 import Footer from "../Components/Footer/footer";
 import SelectDepartment from "../Components/SelectDepartment/SelectDepartment";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { BsEye, BsEyeSlash } from "react-icons/bs";
+import Image from "next/image";
+import { useRouter } from "next/navigation";
 
 const Registration = () => {
+  const router = useRouter();
   const [postUsers, setPostUsers] = useState({
     full_name: "",
     reg_no: "",
     email: "",
     department: "",
-    profile: "", // Change profile to store file data separately
+    profile: "",
     password: "",
     confirm_password: "",
   });
@@ -22,8 +25,8 @@ const Registration = () => {
   const [regNumberValidationError, setRegNumberValidationError] = useState("");
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
-  const [registrationSuccess, setRegistrationSuccess] = useState(false);
-  const [departmentStates, SelectDepartmentStates] = useState('')
+  const [departmentStates, setDepartmentStates] = useState("");
+  const [errors, setErrors] = useState([]);
 
   const togglePasswordVisibility = () => {
     setShowPassword((prevShowPassword) => !prevShowPassword);
@@ -48,9 +51,14 @@ const Registration = () => {
     const regnoRegx = /^\d+\/\d+$/;
     return regnoRegx.test(regno);
   };
+
+  useEffect(() => {
+    // if(errors)
+    console.log("useEffect", errors);
+  }, [ errors]);
+
   const submitForm = async (e) => {
     e.preventDefault();
-
     if (!validateEmail(postUsers.email)) {
       setEmailValidationError("Invalid email format");
       return;
@@ -65,20 +73,21 @@ const Registration = () => {
       setRegNumberValidationError(
         "Only numbers are accepted and it must contain a /"
       );
+      return;
     }
 
     const formData = new FormData();
     for (const key in postUsers) {
-      // Append all fields except the profile image
       if (key !== "profile") {
         formData.append(key, postUsers[key]);
       }
     }
 
-    // Append the file data if it exists
     if (postUsers.profile instanceof File) {
       formData.append("profile", postUsers.profile);
     }
+
+    formData.append("department", departmentStates);
 
     try {
       const res = await axios.post(
@@ -91,9 +100,15 @@ const Registration = () => {
         }
       );
       const data = res.data;
-      console.log(data);
-      setRegistrationSuccess(true);
-      // window.location.href = "/login";
+      for (let key in data) {
+        if (Array.isArray(data[key])) {
+          data[key].forEach((error) => {
+            setErrors((prevErrors) => [...prevErrors, { [key]: error }]);
+          });
+        } else {
+          setErrors((prevErrors) => [...prevErrors, { [key]: data[key] }]);
+        }
+      }
       setPostUsers({
         full_name: "",
         reg_no: "",
@@ -103,28 +118,22 @@ const Registration = () => {
         password: "",
         confirm_password: "",
       });
+      router.push('/login')
     } catch (error) {
       console.error("NOTICE!!", error);
       setError("The username is already taken");
-      if (
-        error.response &&
-        error.response.data &&
-        error.response.data.message === "Email already taken"
-      ) {
-        setError("Email is already taken");
-      } else {
-        setError("An error occurred. Please try again later.");
+      if(postUsers.email === 'The email has already been taken.') {
+        router.refresh()
       }
     }
   };
-
+ 
   const handleData = (e) => {
     const { id, value, type } = e.target;
-
     if (type === "file") {
       setPostUsers((prevState) => ({
         ...prevState,
-        [id]: e.target.files[0], 
+        [id]: e.target.files[0],
       }));
     } else {
       setPostUsers((prevState) => ({
@@ -134,10 +143,17 @@ const Registration = () => {
     }
   };
 
-  const departmentOptions = ["Computer Science", "Mathematics","Pure and Industrial Chemistry", "Statistics"]
+  const departmentOptions = [
+    "Computer Science",
+    "Mathematics",
+    "Pure and Industrial Chemistry",
+    "Statistics",
+  ];
+
   const handleStateChange = (event) => {
-    SelectDepartmentStates(event.target.value)
-  }
+    setDepartmentStates(event.target.value);
+  };
+
   return (
     <>
       <div>
@@ -150,13 +166,6 @@ const Registration = () => {
             <p className="text-center py-1 text-[1.5rem]">
               Create your account
             </p>
-            {registrationSuccess ? (
-              <p className="text-green-500 text-center">
-                Registration completed
-              </p>
-            ) : (
-              <p className="text-green-500 text-center">Error Occured</p>
-            )}
             <form action="" onSubmit={submitForm} className="relative">
               <label htmlFor="" className="block text-[1.5rem] mt-10">
                 FullName
@@ -168,6 +177,12 @@ const Registration = () => {
                 onChange={(e) => handleData(e)}
                 className="border border-[#737373] w-full px-4 py-3 rounded-lg my-2 text-[13px] "
               />
+              {errors.map((error, index) => (
+                <p className="text-red-500" key={index}>
+                  {error?.full_name}
+                </p>
+              ))}
+
               <label htmlFor="" className="block text-[1.5rem] mt-10">
                 Registration Number
               </label>
@@ -178,13 +193,18 @@ const Registration = () => {
                 onChange={(e) => handleData(e)}
                 className="border border-[#737373] w-full px-4 py-3 rounded-lg my-2 text-[13px] "
               />
+              {errors.map((error, index) => (
+                <p className="text-red-500" key={index}>
+                  {error?.reg_no}
+                </p>
+              ))}
               {regNumberValidationError && (
                 <p className="text-red-500">{regNumberValidationError}</p>
               )}
               <label htmlFor="" className="block text-[1.5rem] mt-10">
                 Department
               </label>
-              <SelectDepartment 
+              <SelectDepartment
                 placeholder={"Select Department"}
                 options={departmentOptions}
                 selectedOption={departmentStates}
@@ -204,6 +224,11 @@ const Registration = () => {
               {emailValidationError && (
                 <p className="text-red-500">{emailValidationError}</p>
               )}
+              {errors.map((error, index) => (
+                <p className="text-red-500" key={index}>
+                  {error?.email}
+                </p>
+              ))}
               <label
                 htmlFor="upload-file"
                 className="block text-[1.5rem] mt-10"
@@ -233,7 +258,12 @@ const Registration = () => {
                 {passwordValidationError && (
                   <p className="text-red-500">{passwordValidationError}</p>
                 )}
-                <div className="absolute top-[35.5px] right-5">
+                {errors.map((error, index) => (
+                  <p className="text-red-500" key={index}>
+                    {error?.password}
+                  </p>
+                ))}
+                <div className="absolute top-[35.9px] right-5">
                   {showPassword ? (
                     <BsEye onClick={togglePasswordVisibility} size={15} />
                   ) : (
@@ -252,7 +282,7 @@ const Registration = () => {
                   value={postUsers.confirm_password}
                   className="border border-[#737373] w-full px-4 py-3 rounded-lg my-2 text-[13px] "
                 />
-                <div className="absolute top-[38px] right-5">
+                <div className="absolute top-[33px] right-5">
                   {showConfirmPassword ? (
                     <BsEye
                       onClick={toggleConfirmPasswordVisibility}
@@ -268,16 +298,24 @@ const Registration = () => {
               </div>
               <button
                 type="submit"
-                className="bg-[#518310] lg:px-[10rem] w-full py-4 text-white text-[1.5rem] rounded-lg mb-[10rem] mt-10"
+                className="bg-[#518310] lg:px-[10rem] w-full py-4 text-white text-[1.5rem] rounded-lg mt-10"
               >
                 Register
               </button>
+              <p className="mb-[5rem] pt-5 text-center text-xl">
+                Already have an account?{" "}
+                <a href="/login" className="text-[#518310]">
+                  Sign In
+                </a>
+              </p>
             </form>
           </div>
           <div>
-            <img
+            <Image
               src="/images/register.png"
               alt="Registration Image"
+              width={900}
+              height={900}
               className=" hidden lg:flex object-scale-down pr-[6rem] "
             />
           </div>
@@ -287,4 +325,5 @@ const Registration = () => {
     </>
   );
 };
+
 export default Registration;

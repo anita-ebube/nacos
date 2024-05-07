@@ -5,6 +5,7 @@ import Footer from "../Components/Footer/footer";
 import axios from "axios";
 import { useState } from "react";
 import { BsEye, BsEyeSlash } from "react-icons/bs";
+import Image from "next/image";
 
 const Login = () => {
   const router = useRouter();
@@ -13,12 +14,11 @@ const Login = () => {
     username: "",
     password: "",
   });
+  const [error, setError] = useState("");
   const [showPassword, setShowPassword] = useState(false);
   const togglePasswordVisibility = () => {
     setShowPassword((prevShowPassword) => !prevShowPassword);
   };
-  const [error, setError] = useState("");
-
   function handleInputChange(e) {
     setCredentials({
       ...credentials,
@@ -64,62 +64,8 @@ const Login = () => {
         <div className="p-10">
           <Header />
         </div>
-        {/* <div className="flex lg:justify-between justify-center align-center lg:p-10">
-          <div className="lg:px-[10rem] lg:py-[13rem]">
-            <h1 className="text-center text-[2.5rem] lg:text-[3rem] ">Welcome Back!</h1>
-            <p className="text-center py-1 text-[1.5rem]">
-              Log in to your account
-            </p>
-            <form onSubmit={handleFormSubmit} className="relative ">
-              <label htmlFor="username" className="block text-[1.5rem] mt-10">
-                Full Name
-              </label>
-              <input
-                type="text"
-                id="username"
-                value={credentials.username}
-                onChange={handleInputChange}
-                className="border border-[#737373] w-full px-4 py-4 rounded-lg "
-              />
-              <label htmlFor="password" className="block text-[1.5rem] mt-10">
-                Password
-              </label>
-              <div className="relative">
-                <input
-                  type={showPassword ? "text" : "password"}
-                  id="password"
-                  value={credentials.password}
-                  onChange={handleInputChange}
-                  className="border border-[#737373] w-full px-4 py-4 rounded-lg my-2"
-                />
-                <div className="absolute top-[12.5px] right-5">
-                  {showPassword ? (
-                    <BsEye onClick={togglePasswordVisibility} size={15} />
-                  ) : (
-                    <BsEyeSlash onClick={togglePasswordVisibility} size={15} />
-                  )}
-                </div>
-              </div>
-
-              <button
-                type="submit"
-                className="bg-[#518310] lg:px-[10rem] w-full py-4 text-white my-4 text-[1.5rem] rounded-lg mt-10"
-              >
-                Log In
-              </button>
-              {error && <p className="text-red-500">{error}</p>}
-            </form>
-          </div>
-          <div>
-            <img
-              src="./images/register.png"
-              alt=""
-              className="hidden lg:flex object-scale-down pr-[6rem]"
-            />
-          </div>
-        </div> */}
-        <div className="flex lg:justify-between justify-center align-center lg:p-10">
-          <div className="lg:px-[10rem] lg:py-[13rem] lg:w-[50%]">
+        <div className="flex lg:gap-[6rem] justify-center align-center lg:p-3">
+          <div className="lg:px-[10rem] lg:py-[5rem] lg:w-[40%]">
             <h1 className="text-center text-[3rem] ">Welcome Back!</h1>
             <p className="text-center py-1 text-[1.5rem]">
               Log in to your account
@@ -165,13 +111,15 @@ const Login = () => {
               >
                 Log In
               </button>
+              <p className="mb-[5rem] pt-5 text-center text-xl">Not a member? <a className="text-[#518310]" href="/registration">Signup now</a></p>
               {error && <p className="text-red-500">{error}</p>}
             </form>
           </div>
           <div>
-            <img
-              src="./images/register.png"
-              alt=""
+            <Image
+              src="/images/login.png"
+              alt="Login Image"
+              width={500} height={50}
               className="hidden lg:flex object-scale-down pr-[6rem]"
             />
           </div>

@@ -111,8 +111,9 @@ const Login = () => {
               >
                 Log In
               </button>
-              <p className="mb-[5rem] pt-5 text-center text-xl">Not a member? <a className="text-[#518310]" href="/registration">Signup now</a></p>
               {error && <p className="text-red-500">{error}</p>}
+              <p className="mb-[5rem] pt-5 text-center text-xl">Not a member? <a className="text-[#518310]" href="/registration">Signup now</a></p>
+              
             </form>
           </div>
           <div>

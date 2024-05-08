@@ -7,18 +7,26 @@ import axios from "axios";
 import { BsEye, BsEyeSlash } from "react-icons/bs";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
-import { useForm } from "react-hook-form";
 
 const Registration = () => {
   const router = useRouter();
-  const [full_name, setFull_name] = useState("");
-  const [reg_no, setReg_no] = useState("");
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [confirm_password, setConfirm_password] = useState("");
+  const [postUsers, setPostUsers] = useState({
+    full_name: "",
+    reg_no: "",
+    email: "",
+    department: "",
+    profile: "",
+    password: "",
+    confirm_password: "",
+  });
+  const [error, setError] = useState("");
+  const [passwordValidationError, setPasswordValidationError] = useState("");
+  const [emailValidationError, setEmailValidationError] = useState("");
+  const [regNumberValidationError, setRegNumberValidationError] = useState("");
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
-  const { register, handleSubmit } = useForm();
+  const [departmentStates, setDepartmentStates] = useState("");
+  const [errors, setErrors] = useState([]);
 
   const togglePasswordVisibility = () => {
     setShowPassword((prevShowPassword) => !prevShowPassword);
@@ -30,32 +38,115 @@ const Registration = () => {
     );
   };
 
-  const onSubmit = async () => {
+  const validateEmail = (email) => {
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return emailRegex.test(email);
+  };
+
+  const validatePassword = (password) => {
+    return password.length >= 8;
+  };
+
+  const validateRegNumber = (regno) => {
+    const regnoRegx = /^\d+\/\d+$/;
+    return regnoRegx.test(regno);
+  };
+
+  useEffect(() => {
+    // if(errors)
+    console.log("useEffect", errors);
+  }, [ errors]);
+
+  const submitForm = async (e) => {
+    e.preventDefault();
+    if (!validateEmail(postUsers.email)) {
+      setEmailValidationError("Invalid email format");
+      return;
+    }
+
+    if (!validatePassword(postUsers.password)) {
+      setPasswordValidationError("Password must be at least 8 characters long");
+      return;
+    }
+
+    if (!validateRegNumber(postUsers.reg_no)) {
+      setRegNumberValidationError(
+        "Only numbers are accepted and it must contain a /"
+      );
+      return;
+    }
+
+    const formData = new FormData();
+    for (const key in postUsers) {
+      if (key !== "profile") {
+        formData.append(key, postUsers[key]);
+      }
+    }
+
+    if (postUsers.profile instanceof File) {
+      formData.append("profile", postUsers.profile);
+    }
+
+    formData.append("department", departmentStates);
+
     try {
-      const response = await axios.post(
-        `https://anita.metrochem.com.ng/api/auth/register`,
+      const res = await axios.post(
+        "https://anita.metrochem.com.ng/api/auth/register",
+        formData,
         {
-          full_name,
-          reg_no,
-          email,
-          password,
-          confirm_password,
+          headers: {
+            "Content-Type": "multipart/form-data",
+          },
         }
       );
-      setFull_name("");
-      setEmail("");
-      setReg_no("");
-      setPassword("");
-      setConfirm_password;
-      if (response.data.email === "The email has already been taken.") {
-        router.push("/registration");
-      } else {
-        router.push('/login');
+      const data = res.data;
+      for (let key in data) {
+        if (Array.isArray(data[key])) {
+          data[key].forEach((error) => {
+            setErrors((prevErrors) => [...prevErrors, { [key]: error }]);
+          });
+        } else {
+          setErrors((prevErrors) => [...prevErrors, { [key]: data[key] }]);
+        }
       }
-      // console.log(response.data);
+      setPostUsers({
+        full_name: "",
+        reg_no: "",
+        email: "",
+        department: "",
+        profile: "",
+        password: "",
+        confirm_password: "",
+      });
+      if (!res.data.email) {
+        router.push('/login');
+      } else if (!res.data.full_name) {
+        router.push("/registration");
+      } else if (!res.data.password) {
+        router.push("/registration");
+      }else {
+        console.log("Registration failed:", res.data.email);
+        router.push('/registration');
+      }
+
     } catch (error) {
-      console.log(error);
-      // if(response)
+      console.error("NOTICE!!", error);
+      setError("The username is already taken");
+    }
+  };
+ 
+  const handleData = (e) => {
+    const { id, value, type } = e.target;
+    if (type === "file") {
+      setPostUsers((prevState) => ({
+        ...prevState,
+        [id]: e.target.files[0],
+      }));
+    } else {
+      setPostUsers((prevState) => ({
+        ...prevState,
+        [id]: value,
+      }));
     }
   };
 
@@ -65,6 +156,10 @@ const Registration = () => {
     "Pure and Industrial Chemistry",
     "Statistics",
   ];
+
+  const handleStateChange = (event) => {
+    setDepartmentStates(event.target.value);
+  };
 
   return (
     <>
@@ -78,68 +173,69 @@ const Registration = () => {
             <p className="text-center py-1 text-[1.5rem]">
               Create your account
             </p>
-            <form onSubmit={handleSubmit(onSubmit)} className="relative">
+            <form action="" onSubmit={submitForm} className="relative">
               <label htmlFor="" className="block text-[1.5rem] mt-10">
                 FullName
               </label>
               <input
-                {...register("full_name")}
-                value={full_name}
                 type="text"
-                onChange={(event) => setFull_name(event.target.value)}
+                id="full_name"
+                value={postUsers.full_name}
+                onChange={(e) => handleData(e)}
                 className="border border-[#737373] w-full px-4 py-3 rounded-lg my-2 text-[13px] "
               />
-              {/* {errors.map((error, index) => (
+              {errors.map((error, index) => (
                 <p className="text-red-500" key={index}>
                   {error?.full_name}
                 </p>
-              ))} */}
+              ))}
 
               <label htmlFor="" className="block text-[1.5rem] mt-10">
                 Registration Number
               </label>
               <input
-                {...register("reg_no")}
-                value={reg_no}
-                onChange={(event) => setReg_no(event.target.value)}
+                type="text"
+                id="reg_no"
+                value={postUsers.reg_no}
+                onChange={(e) => handleData(e)}
                 className="border border-[#737373] w-full px-4 py-3 rounded-lg my-2 text-[13px] "
               />
-              {/* {errors.map((error, index) => (
+              {errors.map((error, index) => (
                 <p className="text-red-500" key={index}>
                   {error?.reg_no}
                 </p>
-              ))} */}
-              {/* {regNumberValidationError && (
+              ))}
+              {regNumberValidationError && (
                 <p className="text-red-500">{regNumberValidationError}</p>
-              )} */}
+              )}
               <label htmlFor="" className="block text-[1.5rem] mt-10">
                 Department
               </label>
-              {/* <SelectDepartment
+              <SelectDepartment
                 placeholder={"Select Department"}
                 options={departmentOptions}
                 selectedOption={departmentStates}
                 onChange={handleStateChange}
-                value={department}
-              /> */}
+                value={postUsers.department}
+              />
               <label htmlFor="" className="block text-[1.5rem] mt-10">
                 Email
               </label>
               <input
-                {...register("email")}
-                value={email}
-                type="email"
-                onChange={(e) => setEmail(e.target.value)}
+                type="text"
+                id="email"
+                value={postUsers.email}
+                onChange={(e) => handleData(e)}
                 className="border border-[#737373] w-full px-4 py-3 rounded-lg my-2 text-[13px] "
               />
-              {/* {emailValidationError && (
+              {emailValidationError && (
                 <p className="text-red-500">{emailValidationError}</p>
               )}
               {errors.map((error, index) => (
                 <p className="text-red-500" key={index}>
                   {error?.email}
                 </p>
-              ))} */}
+              ))}
               <label
                 htmlFor="upload-file"
                 className="block text-[1.5rem] mt-10"
@@ -152,7 +248,7 @@ const Registration = () => {
                 name="image"
                 id="profile"
                 capture="camera"
-                // onChange={(e) => handleData(e)}
+                onChange={(e) => handleData(e)}
                 className=" border border-[#737373] w-full px-4 py-3 rounded-lg my-2 file:mr-10"
               />
               <div className="relative">
@@ -160,20 +256,20 @@ const Registration = () => {
                   Password
                 </label>
                 <input
-                  {...register("password")}
                   type={showPassword ? "text" : "password"}
-                  value={password}
-                  onChange={(e) => setPassword(e.target.value)}
-                  className="border border-[#737373] w-full px-4 py-3 rounded-lg my-2 text-[13px] text-black "
+                  id="password"
+                  onChange={(e) => handleData(e)}
+                  value={postUsers.password}
+                  className="border border-[#737373] w-full px-4 py-3 rounded-lg my-2 text-[13px] "
                 />
-                {/* {passwordValidationError && (
+                {passwordValidationError && (
                   <p className="text-red-500">{passwordValidationError}</p>
-                )} */}
-                {/* {errors.map((error, index) => (
+                )}
+                {errors.map((error, index) => (
                   <p className="text-red-500" key={index}>
                     {error?.password}
                   </p>
-                ))} */}
+                ))}
                 <div className="absolute top-[35.9px] right-5">
                   {showPassword ? (
                     <BsEye onClick={togglePasswordVisibility} size={15} />
@@ -188,9 +284,9 @@ const Registration = () => {
                 </label>
                 <input
                   type={showConfirmPassword ? "text" : "password"}
-                  {...register("confirm_password")}
-                  onChange={(e) => setConfirm_password(e.target.value)}
-                  value={confirm_password}
+                  id="confirm_password"
+                  onChange={(e) => handleData(e)}
+                  value={postUsers.confirm_password}
                   className="border border-[#737373] w-full px-4 py-3 rounded-lg my-2 text-[13px] "
                 />
                 <div className="absolute top-[33px] right-5">
